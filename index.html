@@ -251,12 +251,11 @@
   };
   var $=function(id){return document.getElementById(id)};
 
-  // Estado independiente por jugador (índice 0 = Player 1, 1 = Player 2)
   var st={};
-  var modoAna=[false,false];   // modo de cada stick
-  var uiModo=[false,false];    // mantener apretado el indicador de modo
-  var asign=[null,null];       // {index,id} del mando USB asignado
-  var armed=[false,false];     // esperando un botón para asignar
+  var modoAna=[false,false];
+  var uiModo=[false,false];
+  var asign=[null,null];
+  var armed=[false,false];
   var conn=[false,false];
   var lastModoUsb='';
 
@@ -303,7 +302,6 @@
     var up=!!st[j+'-up'],dn=!!st[j+'-down'],lf=!!st[j+'-left'],rt=!!st[j+'-right'];
     var hk=up&&dn, dig=!modoAna[k];
     
-    // Digital
     set(j+'-up',dig&&up);set(j+'-down',dig&&dn);set(j+'-left',dig&&lf);set(j+'-right',dig&&rt);
     set(j+'-ul',dig&&!hk&&up&&lf);set(j+'-ur',dig&&!hk&&up&&rt);
     set(j+'-dlf',dig&&!hk&&dn&&lf);set(j+'-dr',dig&&!hk&&dn&&rt);
@@ -329,7 +327,6 @@
     $(j+'-colD').style.opacity=dig?'1':'.35';
     $(j+'-colA').style.opacity=dig?'.35':'1';
 
-    // Analógico
     var x=st[j+'-ax']||0,y=st[j+'-ay']||0;
     var dot=$(j+'-dot');
     dot.style.left=(50+(x/127)*44)+'%';dot.style.top=(50+(y/127)*44)+'%';
